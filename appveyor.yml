@@ -24,4 +24,5 @@ after_test:
     packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[*]*" -target:"packages\Machine.Specifications.Runner.Console.0.9.2\tools\mspec-x86-clr4.exe" -targetargs:"Withings.NET.Specifications\bin\debug\Withings.NET.Specifications.dll" -output:coverage.xml
 
     packages\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover  -i ./coverage.xml
-  
+on_finish:
+- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
